@@ -1,0 +1,13 @@
+
+services:
+  julia-app:
+    image: julia:latest          # Juliaの公式イメージ
+    container_name: julia_container
+    volumes:
+      - ./src:/app/src           # ホストのsrcディレクトリをコンテナ内の/app/srcにマウント
+    working_dir: /app/src         # 作業ディレクトリを/app/srcに設定
+    command: julia                # juliaを実行（インタラクティブなREPLを起動）
+
+    # 必要に応じて環境変数を指定
+    environment:
+      JULIA_DEPOT_PATH: /app/.julia # Juliaパッケージのインストール先を設定（オプション）

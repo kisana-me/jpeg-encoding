@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCT変換、量子化、符号化</title>
+    <style>
+      body { font-family: Arial, sans-serif; text-align: center; }
+      h2 { margin: 0; }
+      .matrix { display: inline; margin: 10px; }
+      .matrix-cell { width: 30px; height: 30px; display: inline-block; margin: 2px; font-size: 14px; text-align: center; color: black; }
+    </style>
+    <script src="./src.js"></script>
+  </head>
+  <body>
+    <h1>DCT変換、量子化、符号化</h1>
+    <button onclick="setMatrix('matrix1')">英字サイト</button>
+    <a href="https://people.xiph.org/~xiphmont/demo/daala/demo1.shtml">英字サイト</a>
+    <button onclick="setMatrix('random-matrix')">ランダム</button>
+    <button onclick="setMatrix('random2-matrix')">ランダム2</button>
+    <button onclick="setMatrix('matrix2')">2</button>
+    <button onclick="setMatrix('matrix3')">3</button>
+
+    <h2>入力された8x8ブロック</h2>
+    <div class="matrix" id="inputMatrix"></div>
+    <div id="inputArray"></div>
+    <button onclick="applyDCT()">DCTを施す</button>
+
+    <h2>DCTを施した結果</h2>
+    <div class="matrix" id="dctMatrix"></div>
+    <button onclick="applyQuantization()">量子化を実行</button>
+    <button onclick="applyReduce()">量子化結果を削減</button>
+
+    <h2>量子化を実行した結果</h2>
+    <div class="matrix" id="quantizedMatrix"></div>
+    <button onclick="applyEntropyEncoding()">スキャンして符号化</button>
+
+    <h2>スキャンして符号化した結果</h2>
+    <div>
+      <h3>ジグザグスキャン</h3>
+      <div class="matrix" id="zigzagScan-entropyEncodedData"></div>
+      <div class="matrix" id="zigzagScan-entropyEncodedDataSize"></div>
+    </div>
+    <div>
+      <h3>横方向スキャン</h3>
+      <div class="matrix" id="horizontalScan-entropyEncodedData"></div>
+      <div class="matrix" id="horizontalScan-entropyEncodedDataSize"></div>
+    </div>
+    <hr />
+    <button onclick="ntimestry()">n回試行</button>
+  </body>
+</html>
